@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+
+    "name": "Quick Tab Switcher",
+    "description": "Switch active tabs super quick with a custom hotkey.",
+    "version": "1.0",
+
+    "commands": {
+        "toggle_tab_switcher": {
+            "suggested_key": {
+                "default": "Ctrl+J",
+                "mac": "Command+J"
+            },
+            "description": "Toggle the Quick Tab Switcher"
+        }
+    },
+
+    "background": {
+        "scripts": ["build/background.js"],
+        "persistent": true
+    },
+
+    "permissions": [
+        "tabs"
+    ]
+}

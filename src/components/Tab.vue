@@ -1,0 +1,117 @@
+<template>
+  <div :data-id="id" :class="classes"
+    @mouseover="hovered"
+    @click="switchTo"
+  >
+    <div class="favicon">
+      <img :src="favIconUrl" alt="">
+    </div>
+
+    <div class="info">
+      <div class="title" v-html="title"></div>
+      <div class="url" v-html="url"></div>
+    </div>
+
+    <div class="last">
+      <a href="#" @click.stop="close" class="close">&times;</a>
+    </div>
+  </div>
+</template>
+
+<script>
+import Tab from './Tab.vue'
+import Events from '../EventBus'
+
+export default {
+  name: 'tab',
+  props: {
+    id: null,
+    url: '',
+    title: '',
+    favIconUrl: '',
+    highlighted: false,
+    onHover: null
+  },
+  data() {
+    return {
+    }
+  },
+  computed: {
+    classes() {
+      return {
+        tab: true,
+        highlighted: this.highlighted
+      }
+    }
+  },
+  methods: {
+    hovered(event) {
+      this.onHover(this.id)
+    },
+    switchTo() {
+      Events.$emit('switchToTab', this.id)
+    },
+    close() {
+      Events.$emit('closeTab', this.id)
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.tab
+  display flex
+  padding .5rem 0
+  width 100%
+  border-top 1px solid #e6e6e6
+  border-bottom 1px solid #afafaf
+  background #eee
+  text-align left
+  justify-content space-between
+
+  &:hover
+    cursor pointer
+
+  &.highlighted
+    background white
+
+.info
+  flex 1
+  overflow hidden
+
+.title, .url
+  max-width 100%
+  white-space nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+>>> .match
+  font-weight bold
+
+.title
+  font-size 14px
+
+.url
+  color #888
+
+.favicon, .last
+  width 32px
+  display flex
+  align-items center
+  justify-content center
+  img
+    width 16px
+    height 16px
+
+.close
+  display none
+  font-size 24px
+  text-decoration none
+  color #999
+  margin-top -0.3rem
+  &:hover
+    color #444
+
+.tab.highlighted .close
+  display block
+</style>
