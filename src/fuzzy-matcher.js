@@ -6,9 +6,8 @@ const defaults = {
   findAllMatches: true,
   includeScore: true,
   includeMatches: true,
-  threshold: 0.6,
-  location: 0,
-  distance: 100,
+  tokenize: true,
+  matchAllTokens: true,
   maxPatternLength: 32,
   minMatchCharLength: 1
 }
