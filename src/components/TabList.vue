@@ -33,6 +33,11 @@ export default {
       highlightedTabId: null
     }
   },
+  watch: {
+    search() {
+      this.highlightedTabId = null
+    }
+  },
   methods: {
     highlightTab(tabId) {
       this.highlightedTabId = tabId
