@@ -8,8 +8,8 @@
     "commands": {
         "toggle_tab_switcher": {
             "suggested_key": {
-                "default": "Ctrl+J",
-                "mac": "Command+J"
+                "default": "Ctrl+K",
+                "mac": "Command+K"
             },
             "description": "Toggle the Quick Tab Switcher"
         }
