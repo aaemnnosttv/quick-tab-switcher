@@ -32,6 +32,7 @@ import Events from '../EventBus'
 import TabList from './TabList.vue'
 import fuzzyFilter from '../fuzzy-matcher'
 import fuzzyTransform from '../fuzzy-results-transformer'
+import request from '../send-message'
 
 export default {
   name: 'switcher',
@@ -45,20 +46,16 @@ export default {
   components: {
     TabList,
   },
-  methods: {
-    getTabs() {
-      return call(chrome.tabs.query, {}).then(tabs => {
-        const filteredTabs = tabs
-          .filter(tab => tab.id != this.tabId)
-          .map(tab => pick(tab, ['id','title','url','favIconUrl']))
+  created() {
+    request({ action: 'getTabs' }).then(tabs => this.$set(this, 'tabs', tabs))
 
-        this.$set(this, 'tabs', filteredTabs)
-      })
-    },
+    Events.$on('switcher:close', this.close)
+    Events.$on('switchToTab', this.switchToTab)
+    Events.$on('closeTab', this.removeTab)
+  },
+  methods: {
     switchToTab(tabId) {
-      call(chrome.tabs.update, tabId, { highlighted: true })
-        .then(tab => call(chrome.windows.update, tab.windowId, { focused: true }))
-        .then(() => this.close())
+      request({ action: 'switchToTab', tabId: tabId }).then(this.close)
     },
     removeHighlighted() {
       Events.$emit('switcher:removeHighlighted')
@@ -101,16 +98,7 @@ export default {
     }
   },
   mounted() {
-    call(chrome.tabs.getCurrent).then(tab => {
-      this.tabId = tab.id
-      this.getTabs()
-    })
-
     this.$refs.input.focus()
-
-    Events.$on('switcher:close', this.close)
-    Events.$on('switchToTab', this.switchToTab)
-    Events.$on('closeTab', this.removeTab)
   }
 }
 </script>

@@ -1,10 +1,20 @@
+import call from './pcall'
+import pick from 'lodash/pick'
+import find from 'lodash/find'
+import remove from 'lodash/remove'
 import Events from './EventBus'
 import sendClient from './send-message'
 
 let currentSwitcherWindow
+let currentTab
+let lastTabs = [0,0]
 let PADDING_TOP = 50
 let PADDING_BOTTOM = 50
 let SWITCHER_WIDTH = 600
+
+function recordTab(id) {
+  lastTabs = [id, lastTabs.shift()]
+}
 
 function showSwitcher(width = 600, height = 800, left = 300, top = 150) {
   var opts = {
@@ -41,14 +51,18 @@ function closeSwitcher() {
 }
 
 function toggleSwitcher() {
-  chrome.windows.getCurrent(currentWindow => {
-    const left = currentWindow.left + Math.round((currentWindow.width - SWITCHER_WIDTH) / 2)
-    const top = currentWindow.top + PADDING_TOP
-    const height = Math.max(currentWindow.height - PADDING_TOP - PADDING_BOTTOM, 600)
-    const width = SWITCHER_WIDTH
+  call(chrome.windows.getCurrent, { populate: true })
+    .then(currentWindow => {
+      const left = currentWindow.left + Math.round((currentWindow.width - SWITCHER_WIDTH) / 2)
+      const top = currentWindow.top + PADDING_TOP
+      const height = Math.max(currentWindow.height - PADDING_TOP - PADDING_BOTTOM, 600)
+      const width = SWITCHER_WIDTH
+      currentTab = find(currentWindow.tabs, { active: true })
 
-    closeSwitcher() || showSwitcher(width, height, left, top)
-  })
+      recordTab(currentTab.id)
+
+      closeSwitcher() || showSwitcher(width, height, left, top)
+    })
 }
 
 chrome.commands.onCommand.addListener(function(command) {
@@ -65,3 +79,36 @@ chrome.windows.onRemoved.addListener(windowId => {
   }
 })
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action !== 'getTabs') {
+    return
+  }
+
+  call(chrome.tabs.query, {})
+    .then(allTabs => {
+      // filter out the Switcher tab and the current tab from the results
+      const tabs = allTabs.filter(tab => [currentTab.id, sender.tab.id].indexOf(tab.id) === -1)
+      // check if the last tab is in the set
+      const lastTab = find(tabs, tab => lastTabs.indexOf(tab.id) > -1)
+
+      // move the last tab to the top of the list, if found
+      if (lastTab) {
+        remove(tabs, lastTab)
+        tabs.unshift(lastTab)
+      }
+
+      sendResponse(
+        tabs.map(tab => pick(tab, ['id','title','url','favIconUrl','incognito']))
+      )
+    })
+
+  return true // respond asynchronously
+})
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'switchToTab') {
+    call(chrome.tabs.update, request.tabId, { active: true })
+      .then(tab => call(chrome.windows.update, tab.windowId, { focused: true }))
+      .done()
+  }
+})
