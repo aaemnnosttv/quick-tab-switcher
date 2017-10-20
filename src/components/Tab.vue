@@ -65,9 +65,8 @@ export default {
   display flex
   padding .5rem 0
   width 100%
-  border-top 1px solid #e6e6e6
-  border-bottom 1px solid #afafaf
-  background #eee
+  border-top 1px solid #8d8e8f
+  background #f0f0f0
   text-align left
   justify-content space-between
 
@@ -77,6 +76,9 @@ export default {
   &.highlighted
     background white
 
+  + .incognito
+    border-top 1px solid #545454
+
 .info
   flex 1
   overflow hidden
@@ -84,7 +86,7 @@ export default {
 .title, .url
   max-width 100%
   white-space nowrap
-  overflow: hidden
+  overflow hidden
   text-overflow: ellipsis
 
 >>> .match

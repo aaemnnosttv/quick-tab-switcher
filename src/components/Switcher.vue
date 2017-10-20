@@ -113,10 +113,14 @@ export default {
   color #2c3e50
 
 .filter-box
-  border-bottom 2px solid #999
+  background #f0f0f0
+  border-top 1px solid #8d8e8f
+  border-bottom 2px solid #8d8e8f
   padding .8rem
   input
     box-sizing border-box
+    border-radius: 4px;
+    border: 1px solid #8d8e8f;
     width 100%
     font-size 1.8em
     line-height 2em
