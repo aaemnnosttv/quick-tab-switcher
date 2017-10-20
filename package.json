@@ -20,6 +20,7 @@
     "buble": "^0.16.0",
     "buble-loader": "^0.4.0",
     "copy-webpack-plugin": "^4.1.1",
+    "circular-json-es6": "^2.0.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.1",
     "eslint": "^3.19.0",
@@ -27,19 +28,16 @@
     "file-loader": "^1.1.5",
     "friendly-errors-webpack-plugin": "^1.1.2",
     "fuse.js": "^3.2.0",
+    "lodash": "^4.0.6",
     "q": "^1.5.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.6.2",
+    "vue": "^2.0.0",
     "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.0.0",
     "webpack": "^3.7.0",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-dev-server": "^2.9.1"
-  },
-  "dependencies": {
-    "circular-json-es6": "^2.0.0",
-    "lodash": "^4.0.6",
-    "vue": "^2.0.0"
   }
 }
