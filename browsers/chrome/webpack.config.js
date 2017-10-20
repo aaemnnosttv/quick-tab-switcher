@@ -61,8 +61,7 @@ if (isProduction) {
       }
     }),
     new CopyWebpackPlugin([
-      { from: `${alias.src}/switcher.html` },
-      { from: `${alias.src}/assets/`, to: 'assets' }
+      { from: `${alias.src}/switcher.html` }
     ]),
     new WebpackCleanupPlugin()
   ]
