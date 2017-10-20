@@ -29,6 +29,7 @@ export default {
     url: '',
     title: '',
     favIconUrl: '',
+    incognito: false,
     highlighted: false,
     onHover: null
   },
@@ -40,7 +41,8 @@ export default {
     classes() {
       return {
         tab: true,
-        highlighted: this.highlighted
+        highlighted: this.highlighted,
+        incognito: this.incognito
       }
     }
   },
@@ -114,4 +116,17 @@ export default {
 
 .tab.highlighted .close
   display block
+
+.tab.incognito
+  background #303030
+
+  &.highlighted
+    background #464646
+
+  .title
+    color #d4d4d4
+
+  .url
+    color #8a8a8a
+
 </style>

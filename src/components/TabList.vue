@@ -5,6 +5,7 @@
       :id="tab.id"
       :url="tab.url"
       :title="tab.title"
+      :incognito="tab.incognito"
       :fav-icon-url="tab.favIconUrl"
       :highlighted="tab.id === highlightedTab"
       :on-hover="highlightTab"
