@@ -59,3 +59,9 @@ chrome.commands.onCommand.addListener(function(command) {
   }
 })
 
+chrome.windows.onRemoved.addListener(windowId => {
+  if (currentSwitcherWindow && windowId === currentSwitcherWindow.id) {
+    currentSwitcherWindow = null
+  }
+})
+
