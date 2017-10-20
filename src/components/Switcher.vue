@@ -24,15 +24,14 @@
 </template>
 
 <script>
+import browser from 'webextension-polyfill'
 import filter from 'lodash/filter'
 import pick from 'lodash/pick'
 import findIndex from 'lodash/findIndex'
-import call from '../pcall'
 import Events from '../EventBus'
 import TabList from './TabList.vue'
 import fuzzyFilter from '../fuzzy-matcher'
 import fuzzyTransform from '../fuzzy-results-transformer'
-import request from '../send-message'
 
 export default {
   name: 'switcher',
@@ -47,7 +46,7 @@ export default {
     TabList,
   },
   created() {
-    request({ action: 'getTabs' }).then(tabs => this.$set(this, 'tabs', tabs))
+    browser.runtime.sendMessage({ action: 'getTabs' }).then(tabs => this.$set(this, 'tabs', tabs))
 
     Events.$on('switcher:close', this.close)
     Events.$on('switchToTab', this.switchToTab)
@@ -55,14 +54,14 @@ export default {
   },
   methods: {
     switchToTab(tabId) {
-      request({ action: 'switchToTab', tabId: tabId }).then(this.close)
+      browser.runtime.sendMessage({ action: 'switchToTab', tabId: tabId }).then(this.close)
     },
     removeHighlighted() {
       Events.$emit('switcher:removeHighlighted')
     },
     removeTab(tabId) {
       this.$delete(this.tabs, findIndex(this.tabs, { id: tabId }))
-      chrome.tabs.remove(tabId)
+      browser.tabs.remove(tabId)
     },
     prevTab() {
       Events.$emit('switcher:prevTab')
