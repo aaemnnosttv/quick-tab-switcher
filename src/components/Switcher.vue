@@ -12,7 +12,6 @@
     <div class="filter-box">
       <input type="text"
         v-model="filterInput"
-        placeholder="Filter tabs by anything"
         ref="input"
       >
     </div>
