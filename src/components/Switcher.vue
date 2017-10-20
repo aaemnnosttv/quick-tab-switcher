@@ -92,9 +92,8 @@ export default {
       ]
 
       const fuzzyResults = fuzzyFilter(this.tabs, this.search, { keys })
-      const fuzzyTransformed = fuzzyTransform(fuzzyResults, '<span class="match">','</span>')
 
-      return fuzzyTransformed
+      return fuzzyTransform(fuzzyResults, '<span class="match">','</span>')
     }
   },
   mounted() {
