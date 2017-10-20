@@ -24,7 +24,7 @@ function showSwitcher(width = 600, height = 800, left = 300, top = 150) {
 }
 
 function closeSwitcher() {
-  if (! currentSwitcherWindow) {
+  if (! currentSwitcherWindow || ! currentSwitcherWindow.id) {
     return false
   }
 
