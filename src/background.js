@@ -18,7 +18,10 @@ function recordTab(id) {
 
 function showSwitcher(width = 600, height = 800, left = 300, top = 150) {
   const opts = {
-    ...arguments,
+    width,
+    height,
+    left,
+    top,
     url: browser.runtime.getURL('build/switcher.html'),
     focused: true,
     type: 'popup'
