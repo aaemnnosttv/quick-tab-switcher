@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    hovered(event) {
+    hovered() {
       this.onHover(this.id)
     },
     switchTo() {

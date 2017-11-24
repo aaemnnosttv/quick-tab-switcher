@@ -1,5 +1,4 @@
 import assign from 'lodash/assign'
-import each from 'lodash/each'
 import keyBy from 'lodash/keyBy'
 import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
@@ -31,8 +30,6 @@ export default function(results, before, after) {
   }
 
   return map(results, result => {
-    const trnsfrmd = result.item
-
     const keyedResults = keyBy(result.matches, 'key');
     const highlighted = mapValues(keyedResults, matches => highlightMatches(matches, before, after))
 

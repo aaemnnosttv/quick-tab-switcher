@@ -1,9 +1,7 @@
 import browser from 'webextension-polyfill'
 import pick from 'lodash/pick'
 import find from 'lodash/find'
-import contains from 'lodash/has'
 import remove from 'lodash/remove'
-import Events from './EventBus'
 
 let currentSwitcherWindow
 let currentTab
