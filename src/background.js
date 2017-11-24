@@ -54,8 +54,6 @@ function toggleSwitcher() {
 }
 
 browser.commands.onCommand.addListener(command => {
-  console.log(`%c${command} %cfired!`, 'color: red', 'color: inherit')
-
   if (command == 'toggle_tab_switcher') {
     toggleSwitcher()
   }
