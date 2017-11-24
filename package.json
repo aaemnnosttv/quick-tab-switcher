@@ -19,11 +19,12 @@
   "devDependencies": {
     "buble": "^0.16.0",
     "buble-loader": "^0.4.0",
-    "copy-webpack-plugin": "^4.1.1",
     "circular-json-es6": "^2.0.0",
+    "copy-webpack-plugin": "^4.1.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.1",
     "eslint": "^3.19.0",
+    "eslint-plugin-vue": "^3.14.0",
     "eslint-plugin-vue-libs": "^1.2.0",
     "file-loader": "^1.1.5",
     "friendly-errors-webpack-plugin": "^1.1.2",
