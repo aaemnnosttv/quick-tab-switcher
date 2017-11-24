@@ -29,7 +29,6 @@
     "friendly-errors-webpack-plugin": "^1.1.2",
     "fuse.js": "^3.2.0",
     "lodash": "^4.0.6",
-    "q": "^1.5.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.6.2",
