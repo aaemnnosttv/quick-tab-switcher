@@ -54,7 +54,7 @@ function toggleSwitcher() {
 }
 
 browser.commands.onCommand.addListener(command => {
-  if (command == 'toggle_tab_switcher') {
+  if (command === 'toggle_tab_switcher') {
     toggleSwitcher()
   }
 })
