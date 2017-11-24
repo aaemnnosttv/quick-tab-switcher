@@ -2,6 +2,7 @@
   <div class="tab-list">
 
     <tab v-for="tab in tabs"
+      :key="tab.id"
       :id="tab.id"
       :url="tab.url"
       :title="tab.title"
