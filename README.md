@@ -13,10 +13,17 @@ This extension is currently only working in Chrome, and not yet available in the
 $ git clone git@github.com:aaemnnosttv/quick-tab-switcher.git
 $ cd quick-tab-switcher
 ```
+
 **Install dependencies**
 ```sh
 $ npm install
 ```
+
+**Build the extension files**
+```sh
+$ npm run build
+```
+
 **Add extension in Chrome**
 - Open the `chrome://extensions` page
 - Check the box for **Developer Mode** in the top right corner if it isn't already
