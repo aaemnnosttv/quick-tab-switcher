@@ -4,6 +4,7 @@ var webpack = require('webpack')
 var alias = require('../alias')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin')
+const ChromeExtensionReloader = require('webpack-chrome-extension-reloader')
 
 var isProduction = process.env.NODE_ENV === 'production'
 
@@ -46,6 +47,15 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    }),
+    new ChromeExtensionReloader(),
+    new CopyWebpackPlugin([{ from: `${alias.src}/switcher.html` }])
+  ],
   performance: {
     hints: false
   },
