@@ -20,7 +20,6 @@
 
 <script>
 import Tab from './Tab.vue'
-import Events from '../EventBus'
 
 export default {
   name: 'tab',
@@ -51,10 +50,8 @@ export default {
       this.onHover(this.id)
     },
     switchTo() {
-      Events.$emit('switchToTab', this.id)
     },
     close() {
-      Events.$emit('closeTab', this.id)
     }
   }
 }

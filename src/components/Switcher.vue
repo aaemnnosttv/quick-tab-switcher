@@ -24,7 +24,6 @@ import browser from 'webextension-polyfill'
 import filter from 'lodash/filter'
 import pick from 'lodash/pick'
 import findIndex from 'lodash/findIndex'
-import Events from '../EventBus'
 import fuzzyFilter from '../fuzzy-matcher'
 import fuzzyTransform from '../fuzzy-results-transformer'
 
@@ -42,29 +41,22 @@ export default {
   created() {
     browser.runtime.sendMessage({ action: 'getTabs' }).then(tabs => this.$set(this, 'tabs', tabs))
 
-    Events.$on('switcher:close', this.close)
-    Events.$on('switchToTab', this.switchToTab)
-    Events.$on('closeTab', this.removeTab)
   },
   methods: {
     switchToTab(tabId) {
       browser.runtime.sendMessage({ action: 'switchToTab', tabId: tabId }).then(this.close)
     },
     removeHighlighted() {
-      Events.$emit('switcher:removeHighlighted')
     },
     removeTab(tabId) {
       this.$delete(this.tabs, findIndex(this.tabs, { id: tabId }))
       browser.tabs.remove(tabId)
     },
     prevTab() {
-      Events.$emit('switcher:prevTab')
     },
     nextTab() {
-      Events.$emit('switcher:nextTab')
     },
     switchToHighlighted() {
-      Events.$emit('switcher:swichToHighlighted')
     },
     close() {
       window.close()
