@@ -26,12 +26,7 @@ export default {
     title: '',
     favIconUrl: '',
     incognito: false,
-    highlighted: false,
-    onHover: null
-  },
-  data() {
-    return {
-    }
+    highlighted: false
   },
   computed: {
     classes() {
@@ -44,7 +39,6 @@ export default {
   },
   methods: {
     hovered() {
-      this.onHover(this.id)
     },
     switchTo() {
     },
