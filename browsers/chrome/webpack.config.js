@@ -48,9 +48,7 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: ! isProduction
-    ? '#inline-source-map'
-    : false
+  devtool: !isProduction ? '#inline-source-map' : false
 }
 
 if (isProduction) {
@@ -60,9 +58,7 @@ if (isProduction) {
         NODE_ENV: '"production"'
       }
     }),
-    new CopyWebpackPlugin([
-      { from: `${alias.src}/switcher.html` }
-    ]),
+    new CopyWebpackPlugin([{ from: `${alias.src}/switcher.html` }]),
     new WebpackCleanupPlugin()
   ]
 }
