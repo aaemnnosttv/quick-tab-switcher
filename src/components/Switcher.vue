@@ -28,7 +28,6 @@ import fuzzyFilter from '../fuzzy-matcher'
 import fuzzyTransform from '../fuzzy-results-transformer'
 
 export default {
-  name: 'switcher',
   data() {
     return {
       tabId: null,

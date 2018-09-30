@@ -22,7 +22,6 @@
 import Tab from './Tab.vue'
 
 export default {
-  name: 'tab',
   props: {
     id: null,
     url: '',
