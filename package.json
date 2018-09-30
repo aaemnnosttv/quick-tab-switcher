@@ -4,6 +4,7 @@
   "description": "Tab Switcher written with Vue.js!",
   "main": "index.js",
   "scripts": {
+    "dev": "cd browsers/chrome && cross-env NODE_ENV=development webpack --progress --hide-modules",
     "build": "cd browsers/chrome && cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
