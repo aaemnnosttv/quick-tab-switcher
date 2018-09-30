@@ -16,12 +16,12 @@ $ cd quick-tab-switcher
 
 **Install dependencies**
 ```sh
-$ npm install
+$ yarn
 ```
 
 **Build the extension files**
 ```sh
-$ npm run build
+$ yarn run build
 ```
 
 **Add extension in Chrome**
