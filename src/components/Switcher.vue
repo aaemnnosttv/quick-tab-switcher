@@ -16,10 +16,6 @@
       >
     </div>
 
-    <tab-list
-      :search="search"
-      :tabs="filteredTabs"
-    ></tab-list>
   </div>
 </template>
 
@@ -29,7 +25,6 @@ import filter from 'lodash/filter'
 import pick from 'lodash/pick'
 import findIndex from 'lodash/findIndex'
 import Events from '../EventBus'
-import TabList from './TabList.vue'
 import fuzzyFilter from '../fuzzy-matcher'
 import fuzzyTransform from '../fuzzy-results-transformer'
 
@@ -43,7 +38,6 @@ export default {
     }
   },
   components: {
-    TabList,
   },
   created() {
     browser.runtime.sendMessage({ action: 'getTabs' }).then(tabs => this.$set(this, 'tabs', tabs))
