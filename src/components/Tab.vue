@@ -19,8 +19,6 @@
 </template>
 
 <script>
-import Tab from './Tab.vue'
-
 export default {
   props: {
     id: null,
