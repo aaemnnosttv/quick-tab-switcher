@@ -106,7 +106,7 @@ export default {
       this.switchToTab(this.highlightedTabId)
     },
     close() {
-      window.close()
+      this.$emit('close')
     }
   },
   computed: {
