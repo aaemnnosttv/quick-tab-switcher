@@ -5,6 +5,8 @@
     "description": "Switch active tabs super quick with a custom hotkey.",
     "version": "1.0",
 
+    "content_security_policy": "script-src 'self' 'unsafe-eval' http://localhost:8098; object-src 'self'",
+
     "commands": {
         "toggle_tab_switcher": {
             "suggested_key": {
