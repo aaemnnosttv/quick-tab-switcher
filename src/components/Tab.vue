@@ -1,7 +1,7 @@
 <template>
   <div :data-id="id" :class="classes"
-    @mouseover="hovered"
-    @click="switchTo"
+    @mouseover="! highlighted && $emit('highlight')"
+    @click="$emit('switchTo')"
   >
     <div class="favicon">
       <img :src="favIconUrl" alt="">
@@ -13,7 +13,7 @@
     </div>
 
     <div class="last">
-      <a href="#" @click.stop="close" class="close">&times;</a>
+      <a href="#" @click.stop="$emit('close')" class="close">&times;</a>
     </div>
   </div>
 </template>
@@ -35,14 +35,6 @@ export default {
         highlighted: this.highlighted,
         incognito: this.incognito
       }
-    }
-  },
-  methods: {
-    hovered() {
-    },
-    switchTo() {
-    },
-    close() {
     }
   }
 }
